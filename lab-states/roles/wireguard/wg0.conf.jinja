@@ -1,0 +1,11 @@
+[Interface]
+PrivateKey = {{ wg.interface.private_key }}
+Address = {{ wg.interface.address }}
+
+[Peer]
+PublicKey = {{ wg.peer.public_key }}
+{% for ip in wg.peer.allowed_ips -%}
+AllowedIPs = {{ ip }}
+{% endfor -%}
+Endpoint = {{ wg.peer.endpoint }}
+PersistentKeepalive = {{ wg.peer.persistent_keepalive }}
