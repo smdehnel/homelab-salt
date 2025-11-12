@@ -1,0 +1,19 @@
+### This file is managed by Salt ###
+127.0.0.1       localhost
+::1             localhost ip6-localhost ip6-loopback
+ff02::1         ip6-allnodes
+ff02::2         ip6-allrouters
+
+### Pihole Servers ###
+{% for name, data in pillar['hosts'].items() if name.startswith('pihole') -%}
+{{ data.ip }} {{ name }}.lab {{ name }}
+{% endfor -%}
+
+### Static Servers ###
+{% for name, data in pillar['hosts'].items() if not name.startswith('pihole') -%}
+{{ data.ip }} {{ name }}.lab {{ name }}
+{% endfor -%}
+
+# --- BEGIN PVE ---
+{{ grains['fqdn_ip4'][0] }} {{ grains['host'] }}.lab {{ grains['host'] }}
+# --- END PVE ---

@@ -1,3 +1,5 @@
+include:
+  - common.hosts_map
 hostname: jellyfin.lab
 ip_address: 10.1.1.14
 wireguard:
